@@ -24,4 +24,17 @@ I2C, SH1106_I2C, TM1637.hs
 Aron - 3d printed faceplate, peripherals (OLED, 7-segment, rotary encoder, potentiometer, ADKeyboard Module V3)
 Ondra - SI4703 library
 
+## Pin/Bus Plan
 
+|Pins |Device |
+|---|---|
+|#31 ADC0; #33 AGND | Potentiometer |
+|#32 ADC1; #33 AGND | ADKeyboard Module V3|
+|#9 DIO ; #10 CLK | 4-digit 7-segment display|
+|#14 SW; #15 DT; #16 CLK | KY-040 Rotary Encoder|
+
+Bus Plan
+|Bus |Device |
+|---|---|
+|I2C0 (#6 SDA, #7 SCL)| SI4703 FM Tuner|
+|I2C0 (#6 SDA, #7 SCL)| SH1106 OLED Display|
