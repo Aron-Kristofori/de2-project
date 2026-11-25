@@ -117,7 +117,8 @@ class SI4703:
                                 | ((band & 3) << 6) | ((spacing & 3) << 4)
                                 | max(0, min(15, volume)))
         self._write()
-        time.sleep_ms(110)          # max power-up time
+        time.sleep_ms(250)          # max power-up time
+        self._read()
  
     # ---------------- low level ----------------
     # The Si4703 has no register addressing: writes always start at reg 0x02
@@ -152,6 +153,11 @@ class SI4703:
         space = (self._r[_SYSCONFIG2] >> 4) & 3
         lo, hi = _BAND_KHZ[band]
         return lo, hi, _SPACING_KHZ[space]
+    
+    def dump(self):
+        self._read()
+        for i in range(16):
+            print("reg 0x%02X = 0x%04X" %(i,self._r[i]))
  
     # ---------------- region settings ----------------
     # After changing band or spacing, call tune() again.
